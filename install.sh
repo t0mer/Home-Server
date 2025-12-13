@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Home-Server remote installer
+# Runs scripts directly from GitHub using curl (no local downloads)
+
+if [[ $EUID -ne 0 ]]; then
+  echo "Please run as root (sudo)."
+  exit 1
+fi
+
+BASE_URL="https://raw.githubusercontent.com/t0mer/Home-Server/main"
+
+run_remote_script() {
+  local script="$1"
+  local url="${BASE_URL}/${script}"
+
+  echo "▶ Running ${script} from ${url}"
+
+  curl -fsSL "${url}" | bash
+
+  echo "✅ Finished ${script}"
+  echo
+}
+
+run_remote_script "docker.sh"
+run_remote_script "dependencies.sh"
+run_remote_script "cftunnel.sh"
+
+echo "🎉 Home-Server setup completed successfully"
