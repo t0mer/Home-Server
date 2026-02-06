@@ -23,6 +23,9 @@ run_remote_script() {
   echo
 }
 
+
+curl -fsSL https://get.docker.com | sh
+
 run_remote_script "dependencies.sh"
 run_remote_script "cftunnel.sh"
 
