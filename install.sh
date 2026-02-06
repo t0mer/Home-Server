@@ -23,6 +23,9 @@ run_remote_script() {
   echo
 }
 
+echo "Setting TZ to Asia/Jerusalem (UTC+2)"
+sudo timedatectl set-timezone Asia/Jerusalem
+
 
 curl -fsSL https://get.docker.com | sh
 sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
