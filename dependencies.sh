@@ -9,10 +9,10 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-echo "[1/3] Updating package index..."
+echo "[1/4] Updating package index..."
 apt-get update -y
 
-echo "[2/3] Installing packages..."
+echo "[2/4] Installing packages..."
 apt-get install -y \
   ffmpeg \
   zip \
@@ -20,11 +20,14 @@ apt-get install -y \
   python3-pip \
   git
 
-echo "[3/3] Verifying installation..."
+echo "[3/4] Verifying installation..."
 ffmpeg -version | head -n 1
 zip -v | head -n 1
 unzip -v | head -n 1
 pip3 --version
 git --version
+
+echo "[4/4] Removing EXTERNALLY-MANAGED..."
+rm -rf /lib/python3.12/EXTERNALLY-MANAGED
 
 echo "Done ✅"
