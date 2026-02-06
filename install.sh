@@ -23,7 +23,6 @@ run_remote_script() {
   echo
 }
 
-run_remote_script "docker.sh"
 run_remote_script "dependencies.sh"
 run_remote_script "cftunnel.sh"
 
